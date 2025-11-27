@@ -5,7 +5,7 @@ import useResources from './components/utils/Resources'
 import sources from './components/utils/sources'
 import Experience from './components/Experience';
 import { IntroductionUI } from './components/sections/Introduction';
-import AboutMeUI from './components/sections/AboutMe/AboutMeUi';
+import AboutMeUI from './components/sections/AboutMe/AboutMeUI';
 import './styles.css'
 import ProjectsUI from './components/sections/Projects/ProjectsUI';
 
