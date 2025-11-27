@@ -1,0 +1,363 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background: rgb(23, 25, 26);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Inconsolata", Consolas;
+}
+
+#reactRoot {
+    position: relative;
+    width: 100%;
+}
+
+:root {
+    --bg1: #011028;
+    --bg2: #000000;
+    --accent: #145cae;
+    --muted: rgba(255,255,255,0.85);
+    --card-bg: rgba(255,255,255,0.03);
+    --text-color: rgba(147, 224, 255, 0.845);
+}
+
+h1, h2 {
+    font-family: "Inconsolata", Consolas;
+}
+.label > div{
+    font-family: "Inconsolata", Consolas;
+    position: absolute;
+    color: rgb(49, 207, 225);
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 30px;
+    font-size: small;
+}
+.loading-screen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    transition: opacity 0.5s;
+}
+
+.full-section{
+    position: relative;
+    display: flex;
+    height: 100vh;
+    min-height: 700px;
+    padding: clamp(12px, 4vmin, 40px);
+    z-index: 1;
+}
+.full-section-right{
+    position: relative;
+    justify-content: flex-end;
+    display: flex;
+    height: 100vh;
+    padding: clamp(12px, 4vmin, 40px);
+    z-index: 1;
+}
+
+.full-screen{
+    display: flex;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.half-screen{
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+#section-one{
+    display: flex;
+    flex: 1 1 50%;
+    max-width: 50%;
+    justify-content: flex-start;
+}
+
+#section-two{
+    flex: 1 1 60%; 
+    max-width: 60%; 
+}
+#section-three{
+    flex: 1 1 35%;
+    max-width: 35%;
+    align-self: stretch; 
+    height: 100%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center
+}
+
+#self-introduction{
+    width: 100%;
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: clamp(12px, 2.8vmin, 24px);
+    margin: clamp(12px, 2.8vmin, 24px);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+    border: 4px solid rgba(255,255,255,0.04);
+    color: var(--text-color);
+    line-height: 2;
+    letter-spacing: 0.1rem;
+    font-size: clamp(14px, 1.8vmin, 18px);
+}
+a{
+    color: var(--text-color);
+}
+.left-column {
+    flex: 1 1 60%; 
+    max-width: 60%; 
+}
+
+.right-column {
+    flex: 1 1 40%;
+    max-width: 40%;
+    justify-content: space-between;
+}
+
+#about-me-content{
+    display: flex;
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: clamp(12px, 2.8vmin, 24px);
+    margin: clamp(12px, 2.8vmin, 24px);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+    color: var(--text-color);
+    letter-spacing: 0.1rem;
+    line-height: 2.1;
+    font-size: clamp(14px, 1.8vmin, 18px);
+    max-width: 100%;
+    overflow-y: auto;
+}
+.resume-container{
+    display: flex;
+    gap: 5px;   
+}
+.hobby-column {
+    flex: 1 1 0; 
+    display: flex; 
+    gap: 2em;
+    flex-direction: column; 
+    justify-content: flex-end;
+    margin-bottom: clamp(12px, 2.8vmin, 24px);
+}
+#my-hobby-list {
+    display: flex;
+    flex-direction: column; 
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: clamp(8px, 1vmin, 24px);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+    border: 4px solid rgba(255,255,255,0.04);
+    color: var(--text-color);
+    letter-spacing: 0.1rem;
+    line-height: 2;
+    font-size: clamp(14px, 1.8vmin, 18px);
+    max-width: 100%;
+}
+#my-hobby-list h1{
+    margin: 0;
+    padding: 0;
+}
+#my-hobby-image {
+    display: flex;
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: clamp(12px, 2.8vmin, 24px);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+    border: 4px solid rgba(255,255,255,0.04);
+    max-width: 100%;
+    flex-direction: row; 
+    justify-content: space-around; 
+    align-items: center; 
+}
+
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%; 
+    justify-content: space-between;
+}
+
+#my-hobby-image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 75%; 
+    object-fit: contain;
+}
+
+.project-column{
+    margin: clamp(12px, 2.8vmin, 24px);
+    display: flex;
+    flex-direction: column; 
+    gap: 1.5rem;
+}
+.tech-list {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+    border: 4px solid rgba(255,255,255,0.04);
+    justify-content: center;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 0.7rem;
+}
+
+.tech-item {
+    padding: clamp(12px, 2.8vmin, 24px); 
+    color: var(--text-color);
+    font-size: clamp(1.3rem, 2vmin, 3rem);
+    font-weight: 400;
+    /* margin-right: 4px; */
+}
+.separator{
+    color: rgba(255, 255, 255, 0.92);
+    font-size: clamp(1.5rem, 2vmin, 3rem);
+}
+
+#project-description {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: clamp(12px, 2.8vmin, 24px);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+    border: 4px solid rgba(255,255,255,0.04);
+    color: var(--text-color);
+    line-height: 1.6;
+    letter-spacing: 0.05rem;
+    font-size: clamp(14px, 1.8vmin, 18px);
+    max-width: 100%;
+}
+.description-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 12px;
+}
+
+.description-list li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 10px;
+}
+.description-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 1px;
+    font-size: 22px;
+    color: var(--text-color);
+    line-height: 1;
+}
+
+/* ========== PROJECT CONTROLS ========== */
+
+.project-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 2vmin, 20px);
+    padding: clamp(8px, 2vmin, 16px);
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 4px solid rgba(255,255,255,0.04);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+    backdrop-filter: blur(10px);
+}
+
+.control-btn {
+    background: rgba(20, 92, 174, 0.2);
+    border: 2px solid rgba(40, 137, 179, 0.4);
+    border-radius: 8px;
+    color: rgba(40, 137, 179, 0.922);
+    cursor: pointer;
+    padding: clamp(10px, 2vmin, 14px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    width: clamp(44px, 8vmin, 56px);
+    height: clamp(44px, 8vmin, 56px);
+}
+
+.control-btn:hover {
+    background: rgba(20, 92, 174, 0.4);
+    border-color: rgba(40, 137, 179, 0.8);
+    color: rgb(168, 227, 249);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(40, 137, 179, 0.3);
+}
+
+.control-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(40, 137, 179, 0.2);
+}
+
+.control-btn svg {
+    width: clamp(20px, 4vmin, 24px);
+    height: clamp(20px, 4vmin, 24px);
+    transition: transform 0.3s ease;
+}
+
+.play-pause-btn {
+    background: rgba(20, 92, 174, 0.3);
+    border-width: 3px;
+    width: clamp(52px, 10vmin, 64px);
+    height: clamp(52px, 10vmin, 64px);
+}
+
+.play-pause-btn svg {
+    width: clamp(24px, 5vmin, 28px);
+    height: clamp(24px, 5vmin, 28px);
+}
+
+.play-pause-btn:hover {
+    background: rgba(20, 92, 174, 0.5);
+    box-shadow: 0 6px 20px rgba(40, 137, 179, 0.4);
+    transform: scale(1.1);
+}
+
+.github-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(8px, 1vmin, 16px);
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 4px solid rgba(255,255,255,0.04);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+    backdrop-filter: blur(10px);
+}
+.github-link a {
+    color: white;
+}
+
+.prev-btn:hover svg,
+.next-btn:hover svg {
+    transform: scale(2);
+}
