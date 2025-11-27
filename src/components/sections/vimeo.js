@@ -1,0 +1,1 @@
+export const VIMEO_PLAYER_PARAMS = '?badge=0&autopause=0&player_id=0&app_id=58479';

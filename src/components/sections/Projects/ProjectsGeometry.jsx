@@ -2,13 +2,15 @@
 import { Text, Html } from '@react-three/drei'
 import { useProjectsStore } from '../store';
 import { useEffect, useRef, useState } from 'react';
+import { VIMEO_PLAYER_PARAMS } from '../vimeo';
 export default function ProjectsGeometry({objectsDistance = 4, sectionIndex = 3, itemsRef, spacingMultiplier}){
     const macbookModel = itemsRef.current.macbookModel;
     const iframeRef = useRef(null)
 
     const setIframeRef = useProjectsStore((s) => s.setIframeRef) 
     const currentProject = useProjectsStore((state) =>  state.projects[state.currentProjectIndex] );
-    const vimeoUrl = `https://player.vimeo.com/video/${currentProject.vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479`
+    const VIMEO_BASE = import.meta.env.VITE_VIMEO_BASE_URL;
+    const vimeoUrl = `${VIMEO_BASE}${currentProject.vimeoId}${VIMEO_PLAYER_PARAMS}`;
     const projectTitle = currentProject.title.toUpperCase();
     const [title, setTitle] = useState('');
     const indexRef = useRef(0);
