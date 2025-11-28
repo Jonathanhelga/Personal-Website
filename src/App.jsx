@@ -8,8 +8,10 @@ import { IntroductionUI } from './components/sections/Introduction';
 import AboutMeUI from './components/sections/AboutMe/AboutMeUI';
 import './styles.css'
 import ProjectsUI from './components/sections/Projects/ProjectsUI';
+import useIsMobile from './components/utils/useIsMobile';
 
 function App() {
+    const isMobile = useIsMobile();
     const { width, height } = useSizes();
     const { itemsRef, loading } = useResources(sources);
     const [isReady, setIsReady] = useState(false)
@@ -30,6 +32,11 @@ function App() {
                 {!loading && <p style={{ color: '#fff' }}>Preparing scene...</p>}
             </div>
         )
+    }
+    if(isMobile){
+        return (
+        <> 
+        </>);
     }
 
     return (

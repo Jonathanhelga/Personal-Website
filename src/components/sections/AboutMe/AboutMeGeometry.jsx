@@ -5,10 +5,10 @@ export default function AboutMeGeometry({objectsDistance, sectionIndex, spacingM
             <ambientLight intensity={0.6}/>
                 <Text
                     font="./bangers-v20-latin-regular.woff"
-                    position={[1.3, - objectsDistance * sectionIndex * spacingMultiplier * 0.33, 2]}
+                    position={[0, - objectsDistance * sectionIndex * spacingMultiplier * 0.29, 2]}
                     color={"rgb(168, 227, 249)"} 
                     textAlign="center"
-                    fontSize={0.5}
+                    fontSize={0.58}
                 >
                     About Me
                 </Text>

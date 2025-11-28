@@ -94,7 +94,7 @@ export default function ProjectsUI(){
                                 </div>
                             ))}
                         </div>
-                        <div id="project-description">
+                        <div id="project-description" className="scrollable-content-description">
                             <h1>{name}</h1>
 
                             <ul className="description-list">
