@@ -10,7 +10,7 @@ export default function Experience({itemsRef}){
     const objectsDistance = 4;
     const particleCount = 1700;
     const particleSize = 0.38
-    const spacingMultiplier = 2;
+    const spacingMultiplier = 1.2;
 
     const iframeRef = useRef(null);
     const setIframeRef = useProjectsStore((state) => state.setIframeRef);
@@ -36,6 +36,7 @@ export default function Experience({itemsRef}){
             <AboutMeGeometry 
                 objectsDistance={objectsDistance}
                 sectionIndex={2}
+                spacingMultiplier={spacingMultiplier}
             />
             <ProjectsGeometry
                 objectsDistance={objectsDistance}

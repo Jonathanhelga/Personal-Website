@@ -5,7 +5,6 @@ export default function AboutMeUI(){
                 <div className="full-screen left-column" id="section-two">
                     <div id='about-me-content'>
                         <p>
-                            
                             I am a <i >Computer Science student</i> who discovered my durection by actually building things, writing code, 
                             breaking it, fixing it, and slowly understand how real systems logic work.
                             I'm interested in programming to solve real problems and create something genuine that helps people.
@@ -25,7 +24,7 @@ export default function AboutMeUI(){
                             <br/>
                             <br/>
                             and lastly, I am capable, adaptable, and ready to contribute immediately.
-                            
+                        </p>
                         <div className="resume-container">
                             <p>View My Resume?</p>
                             <a 
@@ -37,7 +36,6 @@ export default function AboutMeUI(){
                                 Click here
                             </a>
                         </div>
-                        </p>
                     </div>
                 </div>
                 <div className="full-screen right-column">

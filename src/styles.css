@@ -146,10 +146,11 @@ a{
     box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
     color: var(--text-color);
     letter-spacing: 0.1rem;
-    line-height: 2.1;
+    line-height: 2;
     font-size: clamp(14px, 1.8vmin, 18px);
     max-width: 100%;
     overflow-y: auto;
+    flex-direction: column;
 }
 .resume-container{
     display: flex;
@@ -233,7 +234,6 @@ a{
     color: var(--text-color);
     font-size: clamp(1.3rem, 2vmin, 3rem);
     font-weight: 400;
-    /* margin-right: 4px; */
 }
 .separator{
     color: rgba(255, 255, 255, 0.92);
@@ -249,8 +249,11 @@ a{
     color: var(--text-color);
     line-height: 1.6;
     letter-spacing: 0.05rem;
-    font-size: clamp(14px, 1.8vmin, 18px);
+    font-size: clamp(14px, 1.6vmin, 18px);
     max-width: 100%;
+}
+#project-description h1{
+    font-size: clamp(25px, 4vmin, 18px);
 }
 .description-list {
     list-style: none;

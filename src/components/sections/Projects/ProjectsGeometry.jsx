@@ -52,16 +52,16 @@ export default function ProjectsGeometry({objectsDistance = 4, sectionIndex = 3,
             <ambientLight></ambientLight>
             <Text
                 font="./bangers-v20-latin-regular.woff"
-                position={[-0.5, -(objectsDistance) * spacingMultiplier * sectionIndex * 0.595 , 2]}
+                position={[-0.7, -(objectsDistance) * spacingMultiplier * sectionIndex * 0.538 , 2]}
                 color={"rgb(168, 227, 249)"} 
                 textAlign="center"
-                fontSize={0.45}>
+                fontSize={0.40}>
                     {title} 
             </Text>
             <primitive
                 object={ macbookModel }
                 scale={[0.07, 0.108, 0.08]}
-                position={[-0.7, -(objectsDistance) * spacingMultiplier * sectionIndex * 0.72, 2]}
+                position={[-0.8, -(objectsDistance) * spacingMultiplier * sectionIndex * 0.74, 2]}
                 rotation-x={0.25}
                 rotation-y={0.015}
             >
