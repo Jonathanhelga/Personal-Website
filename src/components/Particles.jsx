@@ -78,3 +78,4 @@ export default function Particles({
                 </Float>
         )
 }
+//git commit -m "feat: optimize scroll navigation logic" -m "- Added laptop guard clause (disable on <1024px)" -m "- Implemented scroll isolation using .closest() for text containers" -m "- Prevented scroll chaining with CSS overscroll-behavior"

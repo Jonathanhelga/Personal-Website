@@ -37,7 +37,11 @@ export default function  CameraController({objectDistance, spacingMultiplier, se
         const handleWheel = (event) => {
             if (window.innerWidth < 1024) return;
             const scrollableDiv = event.target.closest('.scrollable-content, .scrollable-content-hobby, .scrollable-content-description');
-            if(scrollableDiv){ return;}
+
+            if(scrollableDiv){ 
+                const isOverflowing = scrollableDiv.scrollHeight > scrollableDiv.clientHeight;
+                if (isOverflowing) { return;  }
+            }
             event.preventDefault();
             setIsSceneActive(true);
             if(isAnimating) {return; }
