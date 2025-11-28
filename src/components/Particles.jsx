@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/purity */
 import * as THREE from 'three'
 import { Float } from "@react-three/drei"
 import { useRef, useMemo, useEffect } from 'react'
@@ -12,6 +11,7 @@ export default function Particles({
         texture, 
         spacingMultiplier
 }){
+        spacingMultiplier = spacingMultiplier * 2;
         const pointsRef = useRef();
         const { height } = useSizes();
         

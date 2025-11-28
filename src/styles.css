@@ -156,13 +156,15 @@ a{
     overflow-y: auto; 
     display: flex;
     flex-direction: column;
+    overscroll-behavior: contain;
     gap: 1.5rem; 
 }
 .scrollable-content-hobby {
-    max-height: 45vh; 
+    max-height: 35vh; 
     overflow-y: auto; 
     display: flex;
     flex-direction: column;
+    overscroll-behavior: contain;
     gap: 1.5rem; 
 }
 .hobby-wrapper {
@@ -245,6 +247,7 @@ a{
     overflow-y: auto; 
     display: flex;
     flex-direction: column;
+    overscroll-behavior: contain;
     gap: 1.5rem; 
 }
 
