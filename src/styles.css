@@ -364,3 +364,88 @@ a{
 .next-btn:hover svg {
     transform: scale(2);
 }
+
+
+/* =========================================
+   MOBILE RESPONSIVENESS (The Emergency Fix)
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    /* 1. UNLOCK THE HEIGHT
+       Stop forcing sections to be 100vh. Let them grow naturally so users can scroll. */
+    .full-section, 
+    .full-section-right {
+        flex-direction: column; /* Stack items vertically */
+        height: auto;           /* Allow scrolling */
+        min-height: auto;       /* Remove rigid sizing */
+        padding: 20px 10px;     /* Reduce padding to save screen space */
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    /* 2. MAKE COLUMNS FULL WIDTH
+       Stop the 60%/40% split. Make everything 100% width. */
+    #section-one, 
+    #section-two, 
+    #section-three,
+    .left-column, 
+    .right-column,
+    .project-column {
+        flex: 1 1 100%;
+        max-width: 100%;
+        width: 100%;
+        margin: 0 0 2rem 0; /* Add space between the stacked blocks */
+    }
+
+    /* 3. FIX THE MARGINS
+       Your desktop margins (2rem) are too big for mobile. */
+    .full-screen, 
+    .half-screen {
+        margin: 1rem 0;
+        flex-direction: column;
+    }
+
+    /* 4. FIX SPECIFIC COMPONENTS */
+    
+    /* Make the Introduction readable */
+    #self-introduction, 
+    #about-me-content {
+        margin: 10px 0;
+        padding: 15px;
+        font-size: 16px; /* Ensure text is readable */
+    }
+
+    /* Stack the Hobby Images */
+    #my-hobby-image {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    #my-hobby-image img {
+        max-height: 300px; /* Prevent giant images */
+        width: 100%;
+    }
+
+    /* Fix the Tech Stack List wrap */
+    .tech-list {
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .tech-item {
+        font-size: 1.2rem; /* Fix tiny text in clamp */
+        padding: 10px;
+    }
+
+    /* Fix Project Controls overlapping */
+    .project-controls {
+        flex-wrap: wrap;
+    }
+    
+    /* Reverse order for specific sections if needed 
+       (e.g. if you want image on top of text) */
+    .full-section-right {
+        flex-direction: column-reverse; 
+    }
+}
