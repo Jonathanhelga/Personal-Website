@@ -24,7 +24,14 @@ function App() {
           return () => clearTimeout(timer);
         }
     }, [loading]);
-    useEffect(() => { setCanvaskey(`${Math.round(width)}x${Math.round(height)}`) }, [width, height])
+    
+    useEffect(() => { 
+        const timer = setTimeout(() => {
+            setCanvaskey(`${Math.round(width)}x${Math.round(height)}`) 
+        }, 500);
+        return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [width])
     if (loading || !isReady) {
         return (
             <div className="loading-screen">
@@ -42,7 +49,7 @@ function App() {
     return (
     <>
         <Canvas 
-            key={`${Math.round(width)}x${Math.round(height)}`} 
+            key={canvasKey} 
             className="webgl"
             style={{
                 position: 'fixed', 
