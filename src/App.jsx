@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber'
 import useSizes from './components/utils/Sizes'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import useResources from './components/utils/Resources'
 import sources from './components/utils/sources'
 import Experience from './components/Experience';
@@ -16,6 +16,7 @@ function App() {
     const { itemsRef, loading } = useResources(sources);
     const [isReady, setIsReady] = useState(false)
     const [canvasKey, setCanvaskey] = useState(`${Math.round(width)}x${Math.round(height)}`)
+    const lastSize = useRef({ w: width, h: height });
     useEffect(() => {
         if(!loading) {
           const timer = setTimeout(() => {
@@ -26,12 +27,25 @@ function App() {
     }, [loading]);
     
     useEffect(() => { 
-        const timer = setTimeout(() => {
-            setCanvaskey(`${Math.round(width)}x${Math.round(height)}`) 
-        }, 500);
-        return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [width])
+        const widthDiff = Math.abs(width - lastSize.current.w);
+        const heightDiff = Math.abs(height - lastSize.current.h);
+
+        // THE RULES:
+        // - If Width changes > 50px (Laptop resize / Full screen click) -> RESET
+        // - If Height changes > 150px (Rotation) -> RESET
+        // - If Height changes < 150px (iPad address bar) -> IGNORE (Don't crash)
+        if (widthDiff > 50 || heightDiff > 150) {
+            
+            const timer = setTimeout(() => {
+                console.log("Big Resize Detected: Resetting Canvas"); // Debug log
+                setCanvaskey(`${Math.round(width)}x${Math.round(height)}`);
+                // Update our memory so we don't reset again immediately
+                lastSize.current = { w: width, h: height };
+            }, 500);
+            
+            return () => clearTimeout(timer);
+        }
+    }, [width, height]);
     if (loading || !isReady) {
         return (
             <div className="loading-screen">
