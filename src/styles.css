@@ -54,6 +54,19 @@ h1, h2 {
     background: #000;
     transition: opacity 0.5s;
 }
+.mobileView-screen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    transition: opacity 0.5s;
+}
 
 .full-section{
     position: relative;

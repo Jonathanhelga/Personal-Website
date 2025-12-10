@@ -9,7 +9,7 @@ import AboutMeUI from './components/sections/AboutMe/AboutMeUI';
 import './styles.css'
 import ProjectsUI from './components/sections/Projects/ProjectsUI';
 import useIsMobile from './components/utils/useIsMobile';
-
+import MobileView from './components/MobileView';
 function App() {
     const isMobile = useIsMobile();
     const { width, height } = useSizes();
@@ -56,8 +56,8 @@ function App() {
     }
     if(isMobile){
         return (
-        <> 
-        </>);
+        <MobileView> 
+        </ MobileView>);
     }
 
     return (
