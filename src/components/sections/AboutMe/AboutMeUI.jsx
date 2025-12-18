@@ -5,7 +5,7 @@ export default function AboutMeUI(){
             <div className="aboutMe-column left-column">
                 <div className="glass-card scrollable-content">
                     <p>
-                        I am a <i >Computer Science student</i> who discovered my durection by actually building things, writing code, 
+                        I am a <i >Computer Science student</i> who discovered my direction by actually building things, writing code, 
                         breaking it, fixing it, and slowly understand how real systems logic work.
                         I'm interested in programming to solve real problems and create something genuine that helps people.
                         <br/>
@@ -44,7 +44,7 @@ export default function AboutMeUI(){
                                 <p>
                                     I love to move around, read philosophy books, and programming😁. 
                                     I do several sports (basketball, swimming, running, hiking, etc.)   
-                                    I had joined a prestigious High School basketball competition (DBL) 
+                                    I had joined a prestigious High School basketball competition (DBL) in Indonesia
                                     and also completed a full 42.2 km marathon in Hsinchu, Taiwan. 
                                     In the future, I plan to participate in a triathlon when I'm free from the hustle and bustle of work👨🏽‍💻.
                                 </p>
