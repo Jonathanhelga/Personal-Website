@@ -72,8 +72,6 @@ export default function ProjectsGeometry({objectsDistance = 4, sectionIndex = 3,
                     <div style={{
                             width: '44.5vw',              
                             height: '43.7vh',             
-                            maxWidth: '785px',            
-                            maxHeight: '440px',
                             borderRadius: '15px',     
                             overflow: 'hidden',       
                             backgroundColor: '#000',
