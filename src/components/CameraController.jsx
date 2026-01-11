@@ -12,8 +12,8 @@ export default function  CameraController({objectDistance, spacingMultiplier, se
     const groupRef = useRef();
     const customCameraRef = useRef()
     const [isSceneActive, setIsSceneActive] = useState(true)
-    const MAX_PARALLAX_X = 0.22;
-    const MAX_PARALLAX_Y = 0.22;
+    const MAX_PARALLAX_X = 0.5;
+    const MAX_PARALLAX_Y = 0.5;
     useEffect(() => {
         const handleBlur = () => { setIsSceneActive(false); }
         const handleClick = () => { setIsSceneActive(true); }

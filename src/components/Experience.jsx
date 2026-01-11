@@ -5,6 +5,8 @@ import AboutMeGeometry from "./sections/AboutMe/AboutMeGeometry"
 import ProjectsGeometry from "./sections/Projects/ProjectsGeometry";
 import { useProjectsStore } from "./sections/store";
 import { useEffect, useRef } from "react";
+// import useSizes from "./utils/Sizes";
+
 export default function Experience({itemsRef}){
     const section = 3;
     const objectsDistance = 4;

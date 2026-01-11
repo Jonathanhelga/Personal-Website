@@ -63,15 +63,17 @@ export default function ProjectsGeometry({objectsDistance = 4, sectionIndex = 3,
                 scale={[0.07, 0.108, 0.08]}
                 position={[-0.8, -(objectsDistance) * spacingMultiplier * sectionIndex * 0.74, 2]}
                 rotation-x={0.25}
-                rotation-y={0.015}
+                rotation-y={0.}
             >
                 <Html                         
                     center
-                    position={[-0.05, 11.57, -17]}
+                    position={[0.2, 11.57, -17]}
                 >
                     <div style={{
-                            width: '44.5vw',              
-                            height: '43.7vh',             
+                            width: '43.42vw',              
+                            height: '43.3vh',     
+                            // width: '30vw',              
+                            // height: '30vh',          
                             borderRadius: '15px',     
                             overflow: 'hidden',       
                             backgroundColor: '#000',

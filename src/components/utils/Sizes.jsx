@@ -20,6 +20,7 @@ export default function useSizes(){
             })
         }
         
+        
         window.addEventListener('resize', onResize);
         window.addEventListener('orientationchange', onResize);
         onResize();
@@ -31,3 +32,4 @@ export default function useSizes(){
     }, [])
     return sizes;
 }
+//  height: 1004 width: 1800
