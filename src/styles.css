@@ -5,13 +5,13 @@
 }
 
 html {
-    background: rgb(23, 25, 26);
+    background: #000813;
 }
 
 body {
     margin: 0;
     min-height: 100vh;
-    font-family: "Inconsolata", Consolas;
+    font-family: "Inconsolata", Consolas, monospace;
 }
 
 #reactRoot {
@@ -26,13 +26,31 @@ body {
     --muted: rgba(255,255,255,0.85);
     --card-bg: rgba(255,255,255,0.03);
     --text-color: rgba(147, 224, 255, 0.845);
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-accent: rgba(40, 137, 179, 0.2);
+    --glow: rgba(40, 137, 179, 0.22);
+}
+
+/* ---- Keyframes ---- */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollBounce {
+    0%, 100% { opacity: 0.32; transform: translateX(-50%) translateY(0); }
+    50%       { opacity: 0.62; transform: translateX(-50%) translateY(6px); }
 }
 
 h1, h2 {
-    font-family: "Inconsolata", Consolas;
+    font-family: "Inconsolata", Consolas, monospace;
 }
-.label > div{
-    font-family: "Inconsolata", Consolas;
+
+/* ---- Three.js HTML label ---- */
+.label > div {
+    font-family: "Inconsolata", Consolas, monospace;
     position: absolute;
     color: rgb(49, 207, 225);
     padding: 10px;
@@ -41,34 +59,71 @@ h1, h2 {
     border-radius: 30px;
     font-size: small;
 }
-.loading-screen{
+
+/* ---- Loading Screen ---- */
+.loading-screen {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #000;
+    gap: 1.5rem;
+    background: #000813;
     transition: opacity 0.5s;
 }
-.mobileView-screen{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: #000;
-    transition: opacity 0.5s;
+.loading-spinner {
+    width: 34px;
+    height: 34px;
+    border: 2px solid rgba(20, 92, 174, 0.15);
+    border-top-color: rgba(40, 137, 179, 0.8);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+.loading-text {
+    font-family: "Inconsolata", Consolas, monospace;
+    color: rgba(147, 224, 255, 0.45);
+    font-size: 0.75rem;
+    letter-spacing: 0.28rem;
+    text-transform: uppercase;
+    animation: fadeUp 0.6s ease forwards;
 }
 
-.full-section{
+/* ---- Mobile Screen ---- */
+.mobileView-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    background: #000813;
+    text-align: center;
+    padding: 2rem;
+    transition: opacity 0.5s;
+}
+.mobileView-screen h1 {
+    font-family: "Inconsolata", Consolas, monospace;
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+    color: rgba(210, 245, 255, 0.9);
+    letter-spacing: 0.05rem;
+}
+.mobileView-screen p {
+    font-family: "Inconsolata", Consolas, monospace;
+    color: rgba(147, 224, 255, 0.48);
+    font-size: clamp(0.78rem, 2.5vw, 0.95rem);
+    line-height: 1.95;
+    max-width: 300px;
+}
+.mobileView-icon {
+    color: rgba(40, 137, 179, 0.5);
+}
+
+/* ---- Layout ---- */
+.full-section {
     position: relative;
     display: flex;
     height: 100vh;
@@ -76,7 +131,7 @@ h1, h2 {
     padding: clamp(12px, 4vmin, 40px);
     z-index: 1;
 }
-.full-section-right{
+.full-section-right {
     position: relative;
     justify-content: flex-end;
     display: flex;
@@ -84,314 +139,395 @@ h1, h2 {
     padding: clamp(12px, 4vmin, 40px);
     z-index: 1;
 }
-
-.full-screen{
+.full-screen {
     display: flex;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem;
 }
-
-.half-screen{
+.half-screen {
     display: flex;
     align-items: center;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem;
 }
 
-#section-one{
+#section-one {
     display: flex;
     flex: 1 1 50%;
     max-width: 50%;
     justify-content: flex-start;
 }
-
-#section-three{
+#section-three {
     flex: 1 1 35%;
     max-width: 35%;
-    align-self: stretch; 
+    align-self: stretch;
     height: 100%;
     display: flex;
-    flex-direction: column; 
-    justify-content: center
+    flex-direction: column;
+    justify-content: center;
 }
 
-#self-introduction{
+/* ---- Introduction Card ---- */
+#self-introduction {
     background: var(--card-bg);
-    backdrop-filter: blur(1px);
-    border-radius: 12px;
-    padding: clamp(12px, 2.8vmin, 24px);
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    padding: clamp(16px, 3vmin, 28px);
     margin: clamp(12px, 2.8vmin, 24px);
-    box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
-    border: 4px solid rgba(255,255,255,0.04);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03);
+    border: 1px solid var(--border-subtle);
+    border-left: 2px solid rgba(40, 137, 179, 0.28);
     color: var(--text-color);
     line-height: 2;
-    letter-spacing: 0.1rem;
-    font-size: clamp(14px, 1.8vmin, 18px);
+    letter-spacing: 0.07rem;
+    font-size: clamp(13px, 1.7vmin, 17px);
+    transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
-a{
+#self-introduction:hover {
+    border-left-color: rgba(40, 137, 179, 0.6);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.55), 0 0 20px rgba(40, 137, 179, 0.05);
+}
+#self-introduction h2 {
+    font-size: clamp(15px, 2.2vmin, 21px);
+    color: rgba(210, 245, 255, 0.95);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.03rem;
+}
+
+/* ---- Global Links ---- */
+a {
     color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+a:hover {
+    color: rgba(168, 227, 249, 1);
 }
 
-
+/* ---- About Me ---- */
 .aboutMe-column {
     display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: center;
     margin: clamp(12px, 2.8vmin, 24px);
     height: 100%;
 }
-.left-column {
-    flex: 6;
-    
-}
-.right-column {
-    flex: 4; 
-}
+.left-column  { flex: 6; }
+.right-column { flex: 4; }
+
+/* ---- Glass Card (shared) ---- */
 .glass-card {
-    background: var(--card-bg); 
-    backdrop-filter: blur(1px);
-    border-radius: 12px;
-    padding: clamp(16px, 2.5vmin, 32px);
+    background: var(--card-bg);
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    padding: clamp(16px, 2.5vmin, 28px);
     box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
-    border: 4px solid rgba(255,255,255,0.04);
+    border: 1px solid var(--border-subtle);
     color: var(--text-color);
-    font-size: clamp(17px, 2vmin, 16px);
+    font-size: clamp(13px, 1.8vmin, 16px);
     line-height: 2;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.07rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+    border-color: rgba(40, 137, 179, 0.11);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03);
 }
 
+/* ---- Scrollable Areas ---- */
 .scrollable-content {
-    max-height: 80vh; 
-    overflow-y: auto; 
+    max-height: 80vh;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     overscroll-behavior: contain;
-    gap: 1.5rem; 
+    gap: 1.5rem;
 }
 .scrollable-content-hobby {
-    max-height: 35vh; 
-    overflow-y: auto; 
+    max-height: 35vh;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     overscroll-behavior: contain;
-    gap: 1.5rem; 
+    gap: 1.5rem;
 }
+
+/* Thin scrollbars */
+.scrollable-content::-webkit-scrollbar,
+.scrollable-content-hobby::-webkit-scrollbar,
+.scrollable-content-description::-webkit-scrollbar {
+    width: 3px;
+}
+.scrollable-content::-webkit-scrollbar-track,
+.scrollable-content-hobby::-webkit-scrollbar-track,
+.scrollable-content-description::-webkit-scrollbar-track {
+    background: transparent;
+}
+.scrollable-content::-webkit-scrollbar-thumb,
+.scrollable-content-hobby::-webkit-scrollbar-thumb,
+.scrollable-content-description::-webkit-scrollbar-thumb {
+    background: rgba(40, 137, 179, 0.3);
+    border-radius: 2px;
+}
+
+/* ---- Hobby Section ---- */
 .hobby-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 2rem; 
+    gap: 1.5rem;
 }
-
 .hobby-wrapper h1 {
-    font-size: 2rem;
-    color: white;
+    font-size: clamp(1.1rem, 2.2vmin, 1.6rem);
+    color: rgba(210, 245, 255, 0.9);
+    letter-spacing: 0.05rem;
 }
 
+/* ---- Images ---- */
 .image-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
 }
-
 .image-wrapper {
     flex: 1;
     display: flex;
     justify-content: center;
     border-radius: 8px;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
-
 .image-wrapper img {
     width: 100%;
     height: 100%;
-    /* height: auto; */
     object-fit: cover;
-    max-height: 300px;
+    max-height: 260px;
+    filter: brightness(0.88) saturate(0.82);
+    transition: filter 0.35s ease, transform 0.35s ease;
+}
+.image-wrapper img:hover {
+    filter: brightness(1) saturate(1);
+    transform: scale(1.03);
 }
 
-/* Resume Button styling */
+/* ---- Resume ---- */
 .resume-container {
     display: flex;
     align-items: center;
+    gap: 0.8rem;
+    margin-top: 0.25rem;
 }
-
 .resume-button {
-    color: white;
-    padding: 8px;
-    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: rgba(147, 224, 255, 0.9);
+    padding: 4px 12px;
+    font-weight: 600;
+    font-family: "Inconsolata", Consolas, monospace;
+    font-size: clamp(11px, 1.45vmin, 14px);
+    border: 1px solid rgba(40, 137, 179, 0.35);
+    border-radius: 4px;
+    background: rgba(20, 92, 174, 0.1);
+    letter-spacing: 0.1rem;
+    transition: all 0.2s ease;
+}
+.resume-button:hover {
+    background: rgba(20, 92, 174, 0.28);
+    border-color: rgba(40, 137, 179, 0.75);
+    color: rgb(168, 227, 249);
+    box-shadow: 0 0 12px rgba(40, 137, 179, 0.16);
+    transform: translateY(-1px);
 }
 
-.project-column{
+/* ---- Projects ---- */
+.project-column {
     margin: clamp(12px, 2.8vmin, 24px);
     display: flex;
-    flex-direction: column; 
-    gap: 1.5rem;
+    flex-direction: column;
+    gap: 1.25rem;
 }
 .tech-list {
     background: var(--card-bg);
-    backdrop-filter: blur(1px);
-    border-radius: 12px;
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
     box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
-    border: 4px solid rgba(255,255,255,0.04);
+    border: 1px solid var(--border-subtle);
     justify-content: center;
+    align-items: center;
     display: flex;
-    gap: 12px;
+    gap: 2px;
     flex-wrap: wrap;
-    margin-bottom: 0.7rem;
+    padding: clamp(8px, 1.5vmin, 14px) clamp(12px, 2vmin, 20px);
+    margin-bottom: 0;
 }
-
 .tech-item {
-    padding: clamp(0.5rem, 2.8vmin, 24px); 
+    padding: clamp(4px, 0.8vmin, 8px) clamp(6px, 1.2vmin, 10px);
     color: var(--text-color);
-    font-size: clamp(1.3rem, 2vmin, 3rem);
-    font-weight: 400;
+    font-size: clamp(0.7rem, 1.3vmin, 0.9rem);
+    font-weight: 500;
+    letter-spacing: 0.08rem;
 }
-.separator{
-    color: rgba(255, 255, 255, 0.92);
-    font-size: clamp(1.5rem, 2vmin, 3rem);
+.separator {
+    color: rgba(40, 137, 179, 0.4);
+    font-size: clamp(0.5rem, 0.9vmin, 0.7rem);
+    flex-shrink: 0;
 }
-.scrollable-content-description{
-    max-height: 60vh; 
-    overflow-y: auto; 
+.scrollable-content-description {
+    max-height: 60vh;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     overscroll-behavior: contain;
-    gap: 1.5rem; 
+    gap: 1.5rem;
 }
-
 #project-description {
     background: var(--card-bg);
-    backdrop-filter: blur(1px);
-    border-radius: 12px;
-    padding: clamp(12px, 2.8vmin, 24px);
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    padding: clamp(14px, 2.5vmin, 24px);
     box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
-    border: 4px solid rgba(255,255,255,0.04);
+    border: 1px solid var(--border-subtle);
     color: var(--text-color);
-    line-height: 1.7;
-    letter-spacing: 0.07rem;
-    font-size: clamp(14px, 1.6vmin, 18px);
+    line-height: 1.8;
+    letter-spacing: 0.055rem;
+    font-size: clamp(12px, 1.5vmin, 15px);
     max-width: 100%;
 }
-#project-description h1{
-    font-size: clamp(25px, 4vmin, 18px);
+#project-description h1 {
+    font-size: clamp(13px, 2vmin, 17px);
+    color: rgba(210, 245, 255, 0.9);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02rem;
 }
 .description-list {
     list-style: none;
     padding: 0;
-    margin-top: 12px;
+    margin-top: 10px;
 }
-
 .description-list li {
     position: relative;
-    padding-left: 24px;
-    margin-bottom: 10px;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    line-height: 1.75;
 }
 .description-list li::before {
-    content: "•";
+    content: "›";
     position: absolute;
-    left: 0;
-    top: 1px;
-    font-size: 22px;
-    color: var(--text-color);
-    line-height: 1;
+    left: 2px;
+    top: 0;
+    font-size: 18px;
+    color: rgba(40, 137, 179, 0.6);
+    line-height: 1.55;
+    font-weight: 700;
 }
 
-/* ========== PROJECT CONTROLS ========== */
-
+/* ---- Project Controls ---- */
 .project-controls {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(12px, 2vmin, 20px);
-    padding: clamp(8px, 2vmin, 16px);
+    gap: clamp(10px, 1.8vmin, 18px);
+    padding: clamp(8px, 1.5vmin, 14px);
     background: var(--card-bg);
-    border-radius: 12px;
-    border: 4px solid rgba(255,255,255,0.04);
+    border-radius: 10px;
+    border: 1px solid var(--border-subtle);
     box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
-    backdrop-filter: blur(1px);
+    backdrop-filter: blur(2px);
 }
-
 .control-btn {
-    background: rgba(20, 92, 174, 0.2);
-    border: 2px solid rgba(40, 137, 179, 0.4);
-    border-radius: 8px;
-    color: rgba(40, 137, 179, 0.922);
+    background: rgba(20, 92, 174, 0.15);
+    border: 1px solid rgba(40, 137, 179, 0.26);
+    border-radius: 6px;
+    color: rgba(40, 137, 179, 0.82);
     cursor: pointer;
-    padding: clamp(10px, 2vmin, 14px);
+    padding: clamp(9px, 1.8vmin, 13px);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
-    width: clamp(44px, 8vmin, 56px);
-    height: clamp(44px, 8vmin, 56px);
+    width: clamp(40px, 7vmin, 52px);
+    height: clamp(40px, 7vmin, 52px);
 }
-
 .control-btn:hover {
-    background: rgba(20, 92, 174, 0.4);
-    border-color: rgba(40, 137, 179, 0.8);
+    background: rgba(20, 92, 174, 0.34);
+    border-color: rgba(40, 137, 179, 0.7);
     color: rgb(168, 227, 249);
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(40, 137, 179, 0.3);
+    box-shadow: 0 4px 14px rgba(40, 137, 179, 0.2);
 }
-
 .control-btn:active {
     transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(40, 137, 179, 0.2);
+    box-shadow: 0 2px 6px rgba(40, 137, 179, 0.15);
 }
-
 .control-btn svg {
-    width: clamp(20px, 4vmin, 24px);
-    height: clamp(20px, 4vmin, 24px);
-    transition: transform 0.3s ease;
+    width: clamp(17px, 3.5vmin, 22px);
+    height: clamp(17px, 3.5vmin, 22px);
+    transition: transform 0.25s ease;
 }
-
 .play-pause-btn {
-    background: rgba(20, 92, 174, 0.3);
-    border-width: 3px;
-    width: clamp(52px, 10vmin, 64px);
-    height: clamp(52px, 10vmin, 64px);
+    background: rgba(20, 92, 174, 0.22);
+    border-width: 2px;
+    width: clamp(46px, 8.5vmin, 58px);
+    height: clamp(46px, 8.5vmin, 58px);
 }
-
 .play-pause-btn svg {
-    width: clamp(24px, 5vmin, 28px);
-    height: clamp(24px, 5vmin, 28px);
+    width: clamp(19px, 4vmin, 24px);
+    height: clamp(19px, 4vmin, 24px);
 }
-
 .play-pause-btn:hover {
-    background: rgba(20, 92, 174, 0.5);
-    box-shadow: 0 6px 20px rgba(40, 137, 179, 0.4);
-    transform: scale(1.1);
+    background: rgba(20, 92, 174, 0.42);
+    box-shadow: 0 6px 18px rgba(40, 137, 179, 0.3);
+    transform: scale(1.08);
 }
+.prev-btn:hover svg { transform: translateX(-2px); }
+.next-btn:hover svg { transform: translateX(2px); }
 
-.github-link{
+/* ---- GitHub Link ---- */
+.github-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(8px, 1vmin, 16px);
+    padding: clamp(8px, 1.2vmin, 13px) clamp(14px, 2vmin, 22px);
     background: var(--card-bg);
-    border-radius: 12px;
-    border: 4px solid rgba(255,255,255,0.04);
-    box-shadow: 0 6px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
-    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    backdrop-filter: blur(2px);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.github-link:hover {
+    border-color: rgba(40, 137, 179, 0.16);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.45), 0 0 10px rgba(40, 137, 179, 0.07);
 }
 .github-link a {
-    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(147, 224, 255, 0.72);
+    font-size: clamp(11px, 1.4vmin, 14px);
+    letter-spacing: 0.1rem;
+    font-weight: 500;
+}
+.github-link a:hover {
+    color: rgba(200, 240, 255, 1);
 }
 
-.prev-btn:hover svg,
-.next-btn:hover svg {
-    transform: scale(2);
+/* ---- Scroll Indicator ---- */
+.scroll-indicator {
+    position: absolute;
+    bottom: clamp(1.5rem, 3vh, 2.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: rgba(147, 224, 255, 0.28);
+    font-family: "Inconsolata", Consolas, monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.24rem;
+    text-transform: uppercase;
+    pointer-events: none;
+    user-select: none;
+    animation: scrollBounce 2.4s ease-in-out infinite;
 }
-
-
-/* =========================================
-   MOBILE RESPONSIVENESS (The Emergency Fix)
-   ========================================= */
-/*  */

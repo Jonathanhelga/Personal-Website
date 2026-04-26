@@ -49,8 +49,10 @@ function App() {
     if (loading || !isReady) {
         return (
             <div className="loading-screen">
-                <h2 style={{ color: '#fff' }}>Loading resources...</h2>
-                {!loading && <p style={{ color: '#fff' }}>Preparing scene...</p>}
+                <div className="loading-spinner"></div>
+                <p className="loading-text">
+                    {loading ? 'Loading resources' : 'Preparing scene'}
+                </p>
             </div>
         )
     }

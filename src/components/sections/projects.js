@@ -41,8 +41,8 @@ export const projects = [
             "I create a search column, for search all historical stored business data.",
             "There are still a lot of room to improve this web-app."
         ],
-        vimeoId: "1136838939",
-        technologies: ["PHP", "MariaDB", "JavaScript"],
+        vimeoId: "1186651045",
+        technologies: ["PHP", "MySQL", "JavaScript"],
         githubUrl: "https://github.com/Jonathanhelga/catering.git",
     },
     // https://vimeo.com/1136838939?fl=ip&fe=ec
